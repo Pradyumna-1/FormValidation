@@ -1,0 +1,66 @@
+package com.form;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class FormValidationTest {
+	
+	WebDriver driver = null;
+	
+	@BeforeTest
+//	public void setUp() {
+//		driver = new ChromeDriver();
+//		driver.manage().window().maximize();
+//		driver.get("https://form-bot-anvsystems.pages.dev/");
+//	}
+//	
+	@Test
+	public void firstNameValidationTest() throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://form-bot-anvsystems.pages.dev/");
+		
+		
+		driver.findElement(By.name("firstname")).sendKeys("Pradyumna");
+		driver.findElement(By.name("lastname")).sendKeys("Kumar Naik");
+		driver.findElement(By.name("email")).sendKeys("xyz@gmail.com");
+
+	    driver.findElement(By.xpath("//input[@value='male']")).click();  
+		driver.findElement(By.name("phone")).sendKeys("123456789");
+		Select countryDropdown = new Select(driver.findElement(By.name("country")));
+		countryDropdown.selectByVisibleText("India");
+		driver.findElement(By.xpath("//input[@value='JavaScript']")).click();
+//		Thread.sleep(2000);
+		driver.findElement(By.xpath("//button[text()='Submit']")).submit();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.xpath("//button[@type='submit']")).click();
+		String tableDataXpath ="//table/tbody/tr/td";//		
+		int numCells = driver.findElements(By.xpath(tableDataXpath)).size();
+//		for(int i =1; i<=numCells;i++) {
+//			String data = driver.findElement(By.xpath(tableDataXpath+"["+i+"]")).getText();
+//			System.out.println(data);
+//		}
+		String firstName_Actual =driver.findElement(By.xpath(tableDataXpath+"[1]")).getText();
+		String firstName_Expected="Siddharth";
+		Assert.assertEquals(firstName_Actual, firstName_Expected);
+		
+	}
+	@Test
+	public void LastNameValidation() {
+		System.out.println("LastName validation code");
+	}
+	
+	@AfterTest
+	public void testCompletation() {
+		driver.quit();
+	}
+	
+}

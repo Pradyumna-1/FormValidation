@@ -1,0 +1,28 @@
+package com.first;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ImageLink {
+	public static void main(String[] args) {
+
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.get("https://www.opencart.com/");
+		
+//		To find the webelement image 
+		
+		driver.findElement(By.xpath("img[title='OpenCart - Open Source Shopping Cart Solution']")).click();
+		
+		if(driver.getTitle()=='OpenCart - Open Source Shopping Cart Solution') {
+			System.out.println("Title Passed");
+		}else {
+			System.out.println("Not Passed");
+		}
+		
+		driver.quit();
+	}
+}

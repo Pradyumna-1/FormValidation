@@ -1,0 +1,7 @@
+package com.edureka.project;
+
+public class Edureka {
+	public static void main(String[] args) {
+		
+	}
+}

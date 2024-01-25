@@ -1,0 +1,22 @@
+package com.edureka.project;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Edureka {
+	static WebDriver driver;
+	
+	public void EdurekaProfile() throws InterruptedException{
+		WebDriver driver = new ChromeDriver();
+
+		driver.manage().window().maximize();
+		
+		
+//		Put a Implicit wait, this means that any search for elements on the page could take the page could take the time the 
+		
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		
+	}
+}

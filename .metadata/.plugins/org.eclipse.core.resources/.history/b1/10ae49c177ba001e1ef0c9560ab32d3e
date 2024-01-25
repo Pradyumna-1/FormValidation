@@ -1,0 +1,43 @@
+package com.first;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Alert {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.get("http://uitestpractice.com/Students/Switcho");
+		
+//		find alert button and perform click action
+		
+		driver.findElement(By.xpath("//button[@id=''alert")).click();
+		
+//		switch to alert window and accept the alert 
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		driver.quit();
+	}
+
+}

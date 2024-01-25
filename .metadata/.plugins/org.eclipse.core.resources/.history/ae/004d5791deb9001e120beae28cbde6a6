@@ -1,0 +1,58 @@
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class FileUploadMethod {
+
+	public static void main(String[] args) throws InterruptedException, AWTException {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.get("https://demoqa.com/upload-download");
+	
+//		Find webelement choose file 
+	
+//		driver.findElement(By.id("uploadFile")).sendKeys("C:\\Users\\prady.DESKTOP-CIP96U1\\Downloads\\upload.txt");
+	
+	
+		WebElement button = driver.findElement(By.id("uploadFile"));
+		
+		Actions act = new Actions(driver);
+		act.moveToElement(button).perform();
+		
+		
+		Robot rb = new Robot();
+		rb.delay(2000);
+		
+		
+//		copy file to clip board
+		StringSelection ss = new StringSelection("C:\\\\Users\\\\prady.DESKTOP-CIP96U1\\\\Downloads\\\\upload.txt");
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+		
+//		perform control + V to paste file 
+		
+		rb.keyPress(KeyEvent.VK_CONTROL);
+		rb.keyPress(KeyEvent.VK_V);
+		
+		rb.keyRelease(KeyEvent.VK_CONTROL);
+		rb.keyRelease(KeyEvent.VK_V);
+		
+		
+		rb.keyPress(KeyEvent.VK_ENTER);
+		
+		
+		Thread.sleep(3000);
+		driver.quit();
+	}
+	
+}

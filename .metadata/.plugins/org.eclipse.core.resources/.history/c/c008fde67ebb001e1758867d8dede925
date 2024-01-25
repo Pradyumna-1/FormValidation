@@ -1,0 +1,28 @@
+package com.form;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeTest;
+
+public class FormDataValidation {
+	WebDriver driver = null;
+
+	@BeforeTest
+	public void setUp() {
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+
+		driver.get("https://form-bot-anvsystems.pages.dev/");
+		
+	}
+
+	public void firstNameValidationTest() {
+		driver = new ChromeDriver();	
+		driver.manage().window().maximize();
+
+		driver.get("https://form-bot-anvsystems.pages.dev/");
+		
+	}
+	
+
+}

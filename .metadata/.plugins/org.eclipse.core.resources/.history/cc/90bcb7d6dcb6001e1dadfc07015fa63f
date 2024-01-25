@@ -1,0 +1,38 @@
+package com.first;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CSSSelector {
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://saucedemo.com/");
+		
+//		Locate the user name
+		driver.findElement(By.id("user-name")).sendKeys("standard_user");
+
+//		Locate the password
+		driver.findElement(By.id("password")).sendKeys("secret_sauce");
+		Thread.sleep(1000);
+		
+//		Locate the login button
+		driver.findElement(By.id("login-button")).submit();
+		Thread.sleep(2000);
+		
+//		Switch to the product page
+		String currWindowHandle=driver.getWindowHandle();
+		driver.switchTo().window(currWindowHandle);
+		
+//		Locate Sauce Labs Bolt T-Shirt
+//		driver.findElement(By.linkText("Sauce Labs Bolt T-Shirt")).click(); //click operation
+		
+//		Partial Link tag
+		driver.findElement(By.partialLinkText("Bolt")).click();
+		
+		
+		
+		driver.quit();
+		}
+}

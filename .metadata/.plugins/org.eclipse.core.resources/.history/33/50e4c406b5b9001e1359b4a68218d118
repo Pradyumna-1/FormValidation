@@ -1,0 +1,7 @@
+package com.first;
+
+public class ImageLink {
+	public static void main(String[] args) {
+		
+	}
+}

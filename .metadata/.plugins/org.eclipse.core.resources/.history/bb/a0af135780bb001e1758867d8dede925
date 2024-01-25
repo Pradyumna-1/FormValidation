@@ -1,0 +1,35 @@
+package com.form;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Tast {
+
+	public static void main(String[] args) throws IOException {
+		System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://form-bot-anvsystems.pages.dev/");
+
+		BufferedReader br = new BufferedReader(new FileReader("./data.txt"));
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			driver.findElement(By.name("firstname")).sendKeys(line.split(",")[0]);
+			driver.findElement(By.name("lastname")).sendKeys(line.split(",")[1]);
+			driver.findElement(By.name("email")).sendKeys(line.split(",")[2]);
+			driver.findElement(By.xpath("//input[@name='gender' and @value='" + line.split(",")[3] + "']")).click();
+			driver.findElement(By.name("phone")).sendKeys(line.split(",")[4]);
+			driver.findElement(By.name("country")).sendKeys(line.split(",")[5]);
+			driver.findElement(By.xpath("//input[@name='programming' and @value='"+line.split(",")[6] + "']")).click();
+	    }
+		driver.findElement(By.xpath("//button[@type='submit']")).click();
+		driver.quit();
+	}
+	
+
+}

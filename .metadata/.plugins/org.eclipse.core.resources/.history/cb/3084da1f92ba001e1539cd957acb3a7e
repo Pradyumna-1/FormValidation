@@ -1,0 +1,106 @@
+package com.edureka.project;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.google.common.eventbus.SubscriberExceptionContext;
+
+public class Edureka {
+	static WebDriver driver;
+	
+	public void EdurekaProfile() throws InterruptedException{
+		WebDriver driver = new ChromeDriver();
+
+		driver.manage().window().maximize();
+		
+		
+//		Put a Implicit wait, this means that any search for elements on the page could take the page could take the time the 
+		
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		
+//		Lunching the edureka website
+		
+		driver.get("https://www.edureka.co/");
+		
+		try {
+			Thread.sleep(1000);
+			
+		}
+		catch(InterruptedException e){
+			e.printStackTrace();
+		}
+		driver.findElement(By.linkText("Log In")).click();
+		try {
+			Thread.sleep(1000);
+			
+		}
+		catch(InterruptedException e){
+			e.printStackTrace();
+		}
+		
+		
+		Actions act = new Actions(driver);
+		act.moveToElement(driver.findElement(By.id("si_popup_email")));
+		
+		Thread.sleep(2000);
+		act.click();
+		act.sendKeys("TestingEdureka@gmail.com");
+		Thread.sleep(2000);
+		act.build().perform();
+		act.moveToElement(driver.findElement(By.id("si_popup_psswd")));
+		Thread.sleep(2000);
+		
+		act.click();
+		act.sendKeys("12345678");
+		Thread.sleep(2000);
+		act.build().perform();
+		act.moveToElement(driver.findElement(By.xpath("//button[@class='clik_btn_log-btn-block']")));
+		Thread.sleep(2000);
+		act.click();
+		act.build().perform();
+		
+		
+		driver.findElement(By.xpath("//a[@class='dropdown-toggle trackButton']//img[@class='img30']")).click();
+		Thread.sleep(2000);
+//		driver.findElement(By.xpath("//ul[@class='dropdown-menu user-menu profile-xs hidden-sm hidden-xs']//a["));
+	
+		Thread.sleep(2000);
+	
+		WebDriverWait waitElement = new WebDriverWait(driver, null);
+//		waitElement.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='active']//a[@d")));
+//		driver.findElement(By.xpath("//li[@class='active']//a[@data-toggle='tab'][contains(text(),'My Profile'"))
+		String Pagetitle =driver.getTitle();
+		
+		driver.findElement(By.xpath("//div[@class='personal-details']//i[@class='icon-pr-edit']")).click();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
